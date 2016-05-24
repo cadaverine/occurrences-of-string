@@ -14,11 +14,17 @@ public:
 	// Конструктор по умолчанию
 	MyString();
 
+	// Конструктор, принимающий C-style строку в качестве аргумента
+	MyString(const char ch[]);
+
 	// Конструктор копирования
 	MyString(MyString const & s);
 
 	// Оператор присваивания
 	MyString & operator=(MyString const & s);
+
+	// Оператор присваивания для C-style строки
+	MyString & operator=(const char ch[]);
 
 	// Деструктор
 	~MyString();
@@ -35,9 +41,9 @@ public:
 	// Консольный ввод строки
 	void get_line();
 
-
+	// ------------------------
 	// Методы поиска вхождений:
-	//
+	// 
 	// Первое вхождение
 	int first_occurrence();
 

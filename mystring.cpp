@@ -9,6 +9,22 @@ using namespace std;
 // Конструктор по умолчанию
 MyString::MyString() : length(0), flag(false) {}
 
+// Конструктор, принимающий C-style строку в качестве аргумента
+MyString::MyString(const char ch[]) : length(0), flag(true)
+{
+	while (ch[length] != '\0')
+	{
+		length++;
+	}
+
+	str = new char[length];
+
+	for (int i = 0; i < length; i++)
+	{
+		str[i] = ch[i];
+	}
+}
+
 // Конструктор копирования
 MyString::MyString(MyString const & s) : length(s.size()), flag(true)
 {
@@ -35,21 +51,27 @@ MyString & MyString::operator=(MyString const & s)
 	}
 }
 
-// // Оператор присваивания для C-style строки
-// MyString & MyString::operator=(const char[])
-// {
-// 	if(flag == true) delete[] str;
+// Оператор присваивания для C-style строки
+MyString & MyString::operator=(const char ch[])
+{
+	if(flag == true) delete[] str;
 
+	int counter = 0;
 
-// 	length = 10;
+	while (ch[counter] != '\0')
+	{
+		counter++;
+	}
 
-// 	str = new char[length];
+	length = counter;
 
-// 	for (int i = 0; i < length; i++)
-// 	{
-// 		str[i] = s.pointer()[i];
-// 	}
-// }
+	str = new char[length];
+
+	for (int i = 0; i < length; i++)
+	{
+		str[i] = ch[i];
+	}
+}
 
 // Деструктор
 MyString::~MyString()
@@ -146,16 +168,28 @@ void MyString::get_line()
 }
 
 
-// // Методы поиска вхождений:
-// //
-// // Первое вхождение
-// int MyString::first_occurrence();
+// Методы поиска вхождений:
+//
+// Первое вхождение
+int MyString::first_occurrence()
+{
+	
+}
 
-// // Последнее вхождение
-// int MyString::ast_occurrence();
+// Последнее вхождение
+int MyString::ast_occurrence()
+{
 
-// // Количество всех вхождений
-// int MyString::occurrence_num();
+}
 
-// // Количество пересекающихся вхождений
-// int MyString::ol_occurrence_num(); // overlapping
+// Количество всех вхождений
+int MyString::occurrence_num()
+{
+
+}
+
+// Количество пересекающихся вхождений
+int MyString::ol_occurrence_num()
+{
+	
+}
