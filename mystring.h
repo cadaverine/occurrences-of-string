@@ -4,16 +4,18 @@
 
 class MyString
 {
-public:
+private:
 	char * str;
 	int length;
 
-private:
+	bool flag; // true, если пямять выделена
+
+public:
 	// Конструктор по умолчанию
 	MyString();
 
 	// Конструктор копирования
-	MyString(MyString & s);
+	MyString(MyString const & s);
 
 	// Оператор присваивания
 	MyString & operator=(MyString const & s);
@@ -24,9 +26,18 @@ private:
 	// Длина строки
 	int size() const;
 
+	// Указатель на массив 
+	char * pointer() const;
+
+	// Консольный вывод
+	void console_out();
+
+	// Консольный ввод строки
+	void get_line();
+
 
 	// Методы поиска вхождений:
-
+	//
 	// Первое вхождение
 	int first_occurrence();
 
