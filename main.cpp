@@ -6,14 +6,19 @@ using namespace std;
 
 int main()
 {
-	MyString s;
+	MyString s, t("baobab"), z;
+	s = "abracadabra";
 
-	s.get_line();
-	
+	t.console_out();
 
 	s.console_out();
 
+	z = t;
+	z.console_out();
 
+	s.get_line();
+
+	s.console_out();
 
 	return 0;
 }
