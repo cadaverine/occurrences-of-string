@@ -35,9 +35,11 @@ MyString & MyString::operator=(MyString const & s)
 	}
 }
 
+// // Оператор присваивания для C-style строки
 // MyString & MyString::operator=(const char[])
 // {
 // 	if(flag == true) delete[] str;
+
 
 // 	length = 10;
 
@@ -91,11 +93,13 @@ void MyString::get_line()
 
 	char x;
 
-	while (cin.get(x) && x == '\n')
+	// Пока осуществляется консольный ввод (до символа переноса строки)
+	while (cin.get(x) && x != '\n')
 	{
+		// Увеличиваем массив на 10 по мере его заполнения введенными символами
 		if (counter == length)
 		{
-			char * temp = new char[length];
+			char * temp = new char[counter];
 
 			for (int i = 0; i < counter; i++)
 			{
@@ -109,7 +113,7 @@ void MyString::get_line()
 
 			for (int i = 0; i < counter; i++)
 			{
-				temp[i] = str[i];
+				str[i] = temp[i];
 			}
 			delete[] temp;
 		}
@@ -117,10 +121,27 @@ void MyString::get_line()
 		counter++;
 	}
 
-	while (counter < length)
+	// Создаем окончательный массив размера, 
+	// соответствующего количеству введенных символов 
+	if (counter < length)
 	{
-		str[counter] = '\0';
-		counter++;
+		length = counter;
+
+		char * temp = new char[counter];
+
+		for (int i = 0; i < counter; i++)
+		{
+			temp[i] = str[i];
+		}
+		delete[] str;
+
+		str = new char[length];
+
+		for (int i = 0; i < counter; i++)
+		{
+			str[i] = temp[i];
+		}
+		delete[] temp;
 	}
 }
 
