@@ -167,29 +167,48 @@ void MyString::get_line()
 	}
 }
 
-
+// ------------------------------------------------------------------------------------------------
 // Методы поиска вхождений:
 //
 // Первое вхождение
-int MyString::first_occurrence()
+int MyString::first_occurrence(MyString const & s)
 {
-	
+	// Основная строка должна быть длиннее или равна подстроке
+	if (length >= s.size())
+	{
+		int index = 0;
+
+		// Проходим по основной строке до индекса, за которым оставшаяся часть строки короче подстроки
+		for (int i = 0; i <= length - s.size(); i++)
+		{
+			// Проходим по обеим строкам до тех пор, пока совпадают их символы или не закончится подстрока
+			for (int j = 0; j < s.size()  &&  str[i + j] == s.pointer()[j]; j++)
+			{
+				if (j == s.size() - 1)
+				{
+					index = i;
+					goto done;
+				}
+			}
+		}
+		done: return index;
+	}
 }
 
 // Последнее вхождение
-int MyString::ast_occurrence()
+int MyString::last_occurrence(MyString const & s)
 {
 
 }
 
 // Количество всех вхождений
-int MyString::occurrence_num()
+int MyString::occurrence_num(MyString const & s)
 {
 
 }
 
 // Количество пересекающихся вхождений
-int MyString::ol_occurrence_num()
+int MyString::ol_occurrence_num(MyString const & s)
 {
 	
 }

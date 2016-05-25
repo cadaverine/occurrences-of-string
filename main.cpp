@@ -6,19 +6,14 @@ using namespace std;
 
 int main()
 {
-	MyString s, t("baobab"), z;
-	s = "abracadabra";
-
-	t.console_out();
-
-	s.console_out();
-
-	z = t;
-	z.console_out();
+	MyString s, t;
 
 	s.get_line();
 
-	s.console_out();
+	t.get_line();
+
+
+	cout << s.first_occurrence(t) << endl;
 
 	return 0;
 }

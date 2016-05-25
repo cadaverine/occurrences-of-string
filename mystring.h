@@ -41,20 +41,21 @@ public:
 	// Консольный ввод строки
 	void get_line();
 
-	// ------------------------
+
+	// -------------------------------------------------------
 	// Методы поиска вхождений:
 	// 
-	// Первое вхождение
-	int first_occurrence();
+	// Первое вхождение (возвращает индекс)
+	int first_occurrence(MyString const & s);
 
-	// Последнее вхождение
-	int last_occurrence();
+	// Последнее вхождение (возвращает индекс)
+	int last_occurrence(MyString const & s);
 
-	// Количество всех вхождений
-	int occurrence_num();
+	// Количество всех вхождений 
+	int occurrence_num(MyString const & s);
 
 	// Количество пересекающихся вхождений
-	int ol_occurrence_num(); // overlapping
+	int ol_occurrence_num(MyString const & s); // overlapping
 
 };
 
