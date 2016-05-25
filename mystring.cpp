@@ -170,13 +170,13 @@ void MyString::get_line()
 // ------------------------------------------------------------------------------------------------
 // Методы поиска вхождений:
 //
-// Первое вхождение
+// Первое вхождение (возвращает индекс)
 int MyString::first_occurrence(MyString const & s)
 {
 	// Основная строка должна быть длиннее или равна подстроке
 	if (length >= s.size())
 	{
-		int index = 0;
+		int index = -1; // -1, если вхождений нет
 
 		// Проходим по основной строке до индекса, за которым оставшаяся часть строки короче подстроки
 		for (int i = 0; i <= length - s.size(); i++)
@@ -187,15 +187,21 @@ int MyString::first_occurrence(MyString const & s)
 				if (j == s.size() - 1)
 				{
 					index = i;
-					goto done;
+					goto done; // вместо двух break
 				}
 			}
 		}
+
 		done: return index;
+	}
+
+	else 
+	{
+		return -1;
 	}
 }
 
-// Последнее вхождение
+// Последнее вхождение (возвращает индекс)
 int MyString::last_occurrence(MyString const & s)
 {
 
