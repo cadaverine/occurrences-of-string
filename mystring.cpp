@@ -204,6 +204,31 @@ int MyString::first_occurrence(MyString const & s)
 // Последнее вхождение (возвращает индекс)
 int MyString::last_occurrence(MyString const & s)
 {
+	// Основная строка должна быть длиннее или равна подстроке
+	if (length >= s.size())
+	{
+		int index = -1; // -1, если вхождений нет
+
+		// Проходим по основной строке до индекса, за которым оставшаяся часть строки короче подстроки
+		for (int i = 0; i <= length - s.size(); i++)
+		{
+			// Проходим по обеим строкам до тех пор, пока совпадают их символы или не закончится подстрока
+			for (int j = 0; j < s.size()  &&  str[i + j] == s.pointer()[j]; j++)
+			{
+				if (j == s.size() - 1)
+				{
+					index = i;
+				}
+			}
+		}
+
+		return index;
+	}
+
+	else 
+	{
+		return -1;
+	}
 
 }
 
