@@ -102,7 +102,6 @@ void MyString::console_out()
 	cout <<"'"<< endl;
 }
 
-
 // Консольный ввод строки
 void MyString::get_line()
 {
@@ -142,7 +141,6 @@ void MyString::get_line()
 		str[counter] = x;
 		counter++;
 	}
-
 	// Создаем окончательный массив размера, 
 	// соответствующего количеству введенных символов 
 	if (counter < length)
@@ -191,10 +189,8 @@ int MyString::first_occurrence(MyString const & s)
 				}
 			}
 		}
-
 		done: return index;
 	}
-
 	else 
 	{
 		return -1;
@@ -221,10 +217,8 @@ int MyString::last_occurrence(MyString const & s)
 				}
 			}
 		}
-
 		return index;
 	}
-
 	else 
 	{
 		return -1;
@@ -235,11 +229,61 @@ int MyString::last_occurrence(MyString const & s)
 // Количество всех вхождений
 int MyString::occurrence_num(MyString const & s)
 {
+	// Основная строка должна быть длиннее или равна подстроке
+	if (length >= s.size())
+	{
+		int counter = 0; // 0, если вхождений нет
 
+		// Проходим по основной строке до индекса, за которым оставшаяся часть строки короче подстроки
+		for (int i = 0; i <= length - s.size(); i++)
+		{
+			// Проходим по обеим строкам до тех пор, пока совпадают их символы или не закончится подстрока
+			for (int j = 0; j < s.size()  &&  str[i + j] == s.pointer()[j]; j++)
+			{
+				if (j == s.size() - 1)
+				{
+					counter++;
+				}
+			}
+		}
+		return counter;
+	}
+	else 
+	{
+		return 0;
+	}
 }
 
 // Количество пересекающихся вхождений
-int MyString::ol_occurrence_num(MyString const & s)
+int MyString::ol_occurrence_num(MyString const & s) // overlapping
 {
-	
+	// Основная строка должна быть длиннее или равна подстроке
+	if (length >= s.size())
+	{
+		int counter = 0; // 0, если вхождений нет
+		int index = 0;   // индекс предыдущего вхождения
+
+		// Проходим по основной строке до индекса, за которым оставшаяся часть строки короче подстроки
+		for (int i = 0; i <= length - s.size(); i++)
+		{
+			// Проходим по обеим строкам до тех пор, пока совпадают их символы или не закончится подстрока
+			for (int j = 0; j < s.size()  &&  str[i + j] == s.pointer()[j]; j++)
+			{
+				if (j == s.size() - 1)
+				{
+					// Если расстояние между индексами начала вхождений меньше длины подстроки
+					if (i - index <= s.size() - 1)
+					{
+						counter++;
+					}
+					index = i;
+				}
+			}
+		}
+		return counter;
+	}
+	else 
+	{
+		return 0;
+	}
 }
