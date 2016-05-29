@@ -260,8 +260,10 @@ int MyString::ol_occurrence_num(MyString const & s) // overlapping
 	// Основная строка должна быть длиннее или равна подстроке
 	if (length >= s.size())
 	{
-		int counter = 0; // 0, если вхождений нет
-		int index = 0;   // индекс предыдущего вхождения
+		int overlapping_counter = 0; 	// 0, если пересекающихся вхождений нет
+		int total_counter = 0;			// общий счетчик вхождений
+		int index = 0;   				// индекс предыдущего вхождения
+		bool flag = false;				// флаг пересечений
 
 		// Проходим по основной строке до индекса, за которым оставшаяся часть строки короче подстроки
 		for (int i = 0; i <= length - s.size(); i++)
@@ -271,16 +273,32 @@ int MyString::ol_occurrence_num(MyString const & s) // overlapping
 			{
 				if (j == s.size() - 1)
 				{
-					// Если расстояние между индексами начала вхождений меньше длины подстроки
-					if (i - index <= s.size() - 1)
+					// Если вхождения есть и расстояние между индексами начала вхождений меньше длины подстроки,
+					// инкрементируем счетчик overlapping_counter и поднимаем флаг
+					if (total_counter > 0 && index + s.size() - 1 >= i)
 					{
-						counter++;
+						overlapping_counter++;
+						flag = true;
+					} 
+					// Если пересечение есть, но расстояние между индексами больше длины подстроки (разрыв) -
+					// фиксируем последнее пересекающееся вхождение до разрыва, инкрементируя счетчик overlapping_counter,
+					// и сбрасываем флаг
+					if (flag == true && index + s.size() - 1 < i)
+					{
+						overlapping_counter++;
+						flag = false;
 					}
+					total_counter++;
 					index = i;
 				}
 			}
 		}
-		return counter;
+		// Если флаг поднят - фиксируем последнее пересекающееся вхождение
+		if (overlapping_counter > 0 && flag == true)
+		{
+			overlapping_counter++;
+		}
+		return overlapping_counter;
 	}
 	else 
 	{
