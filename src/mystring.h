@@ -1,13 +1,10 @@
 #ifndef _MYSTRING
 #define _MYSTRING
 
-
-class MyString
-{
+class MyString {
 private:
 	char * str;
 	int length;
-
 	bool flag; // true, если пямять выделена
 
 public:
@@ -32,7 +29,7 @@ public:
 	// Длина строки
 	int size() const;
 
-	// Указатель на массив 
+	// Указатель на массив
 	char * pointer() const;
 
 	// Консольный вывод
@@ -41,22 +38,20 @@ public:
 	// Консольный ввод строки
 	void get_line();
 
-
 	// -------------------------------------------------------
 	// Методы поиска вхождений:
-	// 
+	//
 	// Первое вхождение (возвращает индекс)
 	int first_occurrence(MyString const & s);
 
 	// Последнее вхождение (возвращает индекс)
 	int last_occurrence(MyString const & s);
 
-	// Количество всех вхождений 
+	// Количество всех вхождений
 	int occurrence_num(MyString const & s);
 
 	// Количество пересекающихся вхождений
 	int ol_occurrence_num(MyString const & s); // overlapping
-
 };
 
 #endif // _MYSTRING

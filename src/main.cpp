@@ -4,8 +4,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
 	MyString s, t;
 
 	cout << endl;
